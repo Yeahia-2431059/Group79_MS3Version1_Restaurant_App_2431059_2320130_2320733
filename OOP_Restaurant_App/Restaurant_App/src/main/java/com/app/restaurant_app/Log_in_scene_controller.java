@@ -1,14 +1,13 @@
 package com.app.restaurant_app;
+import javafx.event.ActionEvent;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+
+import java.io.IOException;
 
 public class Log_in_scene_controller {
-    @FXML
-    private Label welcomeText;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void Login_button_on_action(ActionEvent actionEvent) throws IOException{
+        Utility.scene_changer(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
+        Utility.new_scene("Yeahia/Restaurant_manager_dashboard.fxml");
     }
 }
