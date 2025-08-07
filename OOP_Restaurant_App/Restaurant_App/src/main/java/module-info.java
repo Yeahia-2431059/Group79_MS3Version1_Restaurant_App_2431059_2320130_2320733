@@ -1,6 +1,7 @@
 module com.app.restaurant_app {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens com.app.restaurant_app to javafx.fxml;
