@@ -1,12 +1,11 @@
 module com.app.restaurant_app {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens com.app.restaurant_app to javafx.fxml;
     exports com.app.restaurant_app;
-    exports com.app.restaurant_app.P_Controllers.P_common_class_controllers;
-    opens com.app.restaurant_app.P_Controllers.P_common_class_controllers to javafx.fxml;
-    exports com.app.restaurant_app.P_Common_class;
-    opens com.app.restaurant_app.P_Common_class to javafx.fxml;
+    opens com.app.restaurant_app.Yeahia.controller_classes to javafx.fxml;
+    exports com.app.restaurant_app.Yeahia.controller_classes;
 }
