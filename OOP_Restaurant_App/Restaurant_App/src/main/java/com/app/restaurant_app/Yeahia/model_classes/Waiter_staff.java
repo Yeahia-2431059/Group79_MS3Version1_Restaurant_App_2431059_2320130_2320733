@@ -1,15 +1,15 @@
 package com.app.restaurant_app.Yeahia.model_classes;
 
-public class Waiter_staff {
-    private final String staff_id;
+import com.app.restaurant_app.Employee;
+
+public class Waiter_staff extends Employee {
     private String name;
     private long mobile_number;
-    private final static String staff_type = "Waiter Staff";
     private static byte same_type_staff_count = 0;
     private static int wage_per_hour;
 
-    public Waiter_staff(String staff_id, String name, long mobile_number) {
-        this.staff_id = staff_id;
+    public Waiter_staff(int staff_id, String name, long mobile_number, String staff_type, String password) {
+        super(staff_id,staff_type,password);
         this.name = name;
         this.mobile_number = mobile_number;
     }
@@ -20,10 +20,6 @@ public class Waiter_staff {
 
     public static void setWage_per_hour(int wage_per_hour) {
         Waiter_staff.wage_per_hour = wage_per_hour;
-    }
-
-    public String getStaff_id() {
-        return staff_id;
     }
 
     public String getName() {
