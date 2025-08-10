@@ -42,11 +42,25 @@ public class Utility{
 
         object_output_stream.writeObject(object);
     }
+    public static ArrayList<Object> read_object(String file_path) throws IOException {
+        File file = new File(file_path);
+        ArrayList<Object> object_arraylist = new ArrayList<Object>();
+        if (file.exists()) {
 
-/*
-    public read_object(){
+            FileInputStream file_input_stream = new FileInputStream(file);
+            ObjectInputStream object_input_stream = new ObjectInputStream(file_input_stream);
 
+            while (true) {
+                try {
+                    object_arraylist.add(object_input_stream.readObject());
+                } catch (Exception e) {
+                    break;
+                }
+
+            }
+        }
+        return object_arraylist;
     }
-*/
 }
+
 
