@@ -1,5 +1,6 @@
 package com.app.restaurant_app.Yeahia.controller_classes;
 
+import com.app.restaurant_app.Yeahia.model_classes.Restaurant_manager;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -16,6 +17,14 @@ public class Restaurant_manager_dashboard_controller {
     @javafx.fxml.FXML
     private TableView staff_tablview;
 
+
+    public void initialize(){
+
+    }
+
+    public static void get_resources(Restaurant_manager restaurant_manager){
+
+    }
     @javafx.fxml.FXML
     public void Manage_staff_button(ActionEvent actionEvent) {
 

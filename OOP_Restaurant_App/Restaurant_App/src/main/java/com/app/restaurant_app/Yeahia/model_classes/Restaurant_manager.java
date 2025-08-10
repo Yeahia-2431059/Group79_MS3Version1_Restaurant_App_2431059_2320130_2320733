@@ -1,21 +1,19 @@
 package com.app.restaurant_app.Yeahia.model_classes;
 
-public class Restaurant_manager {
-    private final String staff_id;
+import com.app.restaurant_app.Employee;
+
+public class Restaurant_manager extends Employee {
+
     private String name;
     private long mobile_number;
-    private final static String staff_type = "Restaurant Manager";
     private static byte same_type_staff_count = 1;
 
-    public Restaurant_manager(String staff_id, String name, long mobile_number) {
-        this.staff_id = staff_id;
+    public Restaurant_manager(int staff_id, String name, long mobile_number, String staff_type, String password) {
+        super(staff_id,staff_type,password);
         this.name = name;
         this.mobile_number = mobile_number;
     }
 
-    public String getStaff_id() {
-        return staff_id;
-    }
 
     public String getName() {
         return name;
