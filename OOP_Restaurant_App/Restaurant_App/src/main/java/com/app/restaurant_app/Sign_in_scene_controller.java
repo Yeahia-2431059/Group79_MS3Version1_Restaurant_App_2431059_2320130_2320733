@@ -45,8 +45,27 @@ public class Sign_in_scene_controller {
             String unique_identifier = gmail_textfield.getText();
 
             if (is_integer(unique_identifier)) {
-                Employee.verify_login(Integer.parseint(gmail_textfield.getText())
-            } else {
+                Employee employee = Employee.verify_login(Integer.parseint(gmail_textfield.getText())
+                ((Employee) employee).setPassword(password_textfield.getText());
+
+                if (employee instanceof Waiter_staff) {
+                    ((Waiter_staff) employee).setName(name_textfield.getText());
+                    ((Waiter_staff) employee).setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
+                    Waiter_staff.setSame_type_staff_count((byte) (Waiter_staff.getSame_type_staff_count() + 1));
+                    
+                    scene_changer(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
+                    Waiter_dashboard_controller.get_resources((Waiter_staff) employee);
+                }
+               // else if (employee instanceof Restaurant_manager) {
+               //     ((Restaurant_manager) employee).setName(name_textfield.getText());
+               //     ((Restaurant_manager) employee).setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
+
+               //     scene_changer(actionEvent,"Yeahia/Restaurant_manager_dashboard.fxml");
+               //     Restaurant_manager_dashboard_controller.get_resources((Restaurant_manager)employee);
+               // }
+                write_object("data_files/employee_data.bin", employee);
+            }     
+            else {
 
                 ArrayList<Object> customer_arraylist = new ArrayList<>(Utility.read_object("data_files/customer_data.bin"));
 
@@ -79,4 +98,5 @@ public class Sign_in_scene_controller {
         }
     }
 }
+
 
