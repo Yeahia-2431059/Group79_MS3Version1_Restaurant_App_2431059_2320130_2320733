@@ -40,7 +40,7 @@ public class Employee {
             if ((((Employee) employee).getEmployee_id()) == employee_id) {
 
                 if (((Employee) employee).getPassword().isEmpty()) {
-                        return employee
+                    return employee
                 } 
                 else {
                     alert = new Alert(Alert.AlertType.INFORMATION, "Already exists!, please log in instead");
@@ -50,6 +50,7 @@ public class Employee {
         }
     }
 }
+
 
 
 
