@@ -45,11 +45,13 @@ public class Employee {
                 else {
                     alert = new Alert(Alert.AlertType.INFORMATION, "Already exists!, please log in instead");
                     alert.showAndWait();
+                    return;
                 }
             }
         }
     }
 }
+
 
 
 
