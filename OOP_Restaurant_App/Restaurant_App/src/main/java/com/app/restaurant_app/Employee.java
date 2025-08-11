@@ -31,6 +31,10 @@ public class Employee {
     public int getEmployee_id() {
         return employee_id;
     }
+    public static final Employee verify_login(int employee_id,String password){
+        
+    }
 
 
 }
+
