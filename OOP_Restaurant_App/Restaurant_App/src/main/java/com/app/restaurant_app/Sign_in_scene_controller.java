@@ -45,40 +45,7 @@ public class Sign_in_scene_controller {
             String unique_identifier = gmail_textfield.getText();
 
             if (is_integer(unique_identifier)) {
-
-                int employee_id = Integer.parseInt(unique_identifier);
-                ArrayList<Object> employee_arraylist = new ArrayList<Object>(Utility.read_object("data_files/employee_data.bin"));
-
-                for (Object employee : employee_arraylist) {
-
-                    if ((((Employee) employee).getEmployee_id()) == employee_id) {
-
-                        if (((Employee) employee).getPassword().isEmpty()) {
-                            ((Employee) employee).setPassword(password_textfield.getText());
-
-                            if (employee instanceof Waiter_staff) {
-                                ((Waiter_staff) employee).setName(name_textfield.getText());
-                                ((Waiter_staff) employee).setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
-                                Waiter_staff.setSame_type_staff_count((byte) (Waiter_staff.getSame_type_staff_count() + 1));
-
-                                write_object("data_files/employee_data.bin", employee);
-
-                                scene_changer(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
-                                Waiter_dashboard_controller.get_resources((Waiter_staff) employee);
-                            }
-                            //                        else if (employee instanceof Restaurant_manager) {
-                            //                            ((Restaurant_manager) employee).setName(name_textfield.getText());
-                            //                            ((Restaurant_manager) employee).setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
-                            //
-                            //                            scene_changer(actionEvent,"Yeahia/Restaurant_manager_dashboard.fxml");
-                            //                            Restaurant_manager_dashboard_controller.get_resources((Restaurant_manager)employee);
-                            //                        }
-                        } else {
-                            alert = new Alert(Alert.AlertType.INFORMATION, "Already exists!, please log in instead");
-                            alert.showAndWait();
-                        }
-                    }
-                }
+                Employee.verify_login(Integer.parseint(gmail_textfield.getText())
             } else {
 
                 ArrayList<Object> customer_arraylist = new ArrayList<>(Utility.read_object("data_files/customer_data.bin"));
@@ -112,3 +79,4 @@ public class Sign_in_scene_controller {
         }
     }
 }
+
