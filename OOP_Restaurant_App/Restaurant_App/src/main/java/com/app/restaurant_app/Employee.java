@@ -31,7 +31,7 @@ public class Employee {
     public int getEmployee_id() {
         return employee_id;
     }
-    public static final Employee verify_login(int employee_id,String password){
+    public static final Employee verify_login(int employee_id){
 
         ArrayList<Object> employee_arraylist = new ArrayList<Object>(Utility.read_object("data_files/employee_data.bin"));
 
@@ -51,6 +51,7 @@ public class Employee {
         }
     }
 }
+
 
 
 
