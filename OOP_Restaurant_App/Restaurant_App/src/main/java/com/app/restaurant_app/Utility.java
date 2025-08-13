@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Utility{
     }
 
     public static void write_object(String file_path, Object object) throws IOException{
+
         ObjectOutputStream object_output_stream;
         File file = new File(file_path);
 
@@ -41,8 +43,20 @@ public class Utility{
         }
 
         object_output_stream.writeObject(object);
+        object_output_stream.close();
     }
 
+    public static void write_object_arraylist_replace(String file_path, ArrayList<Object> object_arraylist) throws IOException{
+        ObjectOutputStream object_output_stream;
+        File file = new File(file_path);
+
+        FileOutputStream file_output_stream = new FileOutputStream(file);
+        object_output_stream = new ObjectOutputStream(file_output_stream);
+        for (Object object: object_arraylist){
+            object_output_stream.writeObject(object);
+        }
+        object_output_stream.close();
+    }
 
     public static ArrayList<Object> read_object(String file_path) throws IOException {
         File file = new File(file_path);
@@ -51,7 +65,6 @@ public class Utility{
 
             FileInputStream file_input_stream = new FileInputStream(file);
             ObjectInputStream object_input_stream = new ObjectInputStream(file_input_stream);
-
             while (true) {
                 try {
                     object_arraylist.add(object_input_stream.readObject());
@@ -60,18 +73,37 @@ public class Utility{
                 }
 
             }
+            object_input_stream.close();
         }
         return object_arraylist;
+
     }
+
     public static boolean is_integer(String string) {
         if (string == null) {
             return false;
         }
         try {
             Integer.parseInt(string);
-            return true; // Successfully parsed
+            return true;
         } catch (NumberFormatException e) {
-            return false; // Not an integer
+            return false;
         }
+    }
+    public static boolean is_long(String string) {
+        if (string == null) {
+            return false;
+        }
+        try {
+            Long.parseLong(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static void show_information_alert(Alert.AlertType alert_type, String alert_information){
+        Alert alert = new Alert(alert_type,alert_information);
+        alert.showAndWait();
     }
 }

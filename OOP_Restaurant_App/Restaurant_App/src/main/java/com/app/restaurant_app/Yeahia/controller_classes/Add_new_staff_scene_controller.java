@@ -1,11 +1,9 @@
 package com.app.restaurant_app.Yeahia.controller_classes;
 
-import com.app.restaurant_app.Sakib.model_classes.Inventory_manager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
 
 public class Add_new_staff_scene_controller {
     @FXML
@@ -13,15 +11,27 @@ public class Add_new_staff_scene_controller {
     @FXML
     private TextField new_staff_id_textfield;
     @FXML
-    private TableView new_staff_schedule_tableview;
+    private ChoiceBox choose_shift_choicebox;
+    @FXML
+    private TextArea selected_working_days_text_area;
+    @FXML
+    private ChoiceBox select_working_days_choicebox;
+
 
     public void initialize() {
-        new_staff_type_choicebox.getItems().addAll("Waiter staff", "Accountant", "Kitchen staff", "Delivery driver", "Inventory_manager", "Marketing manager");
-
+        new_staff_type_choicebox.getItems().addAll("Waiter staff", "Accountant");
 
     }
     @FXML
     public void add_staff_button(ActionEvent actionEvent) {
 
+    }
+
+    @FXML
+    public void add_to_schedule_button_on_action(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void remove_from_schedule_on_action(ActionEvent actionEvent) {
     }
 }

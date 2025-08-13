@@ -6,14 +6,12 @@ public class Restaurant_manager extends Employee {
 
     private String name;
     private long mobile_number;
-    private static byte same_type_staff_count = 1;
+    private static byte same_type_staff_count = 0;
 
-    public Restaurant_manager(int staff_id, String name, long mobile_number, String staff_type, String password) {
-        super(staff_id,staff_type,password);
-        this.name = name;
-        this.mobile_number = mobile_number;
+    public Restaurant_manager(int staff_id, String staff_type) {
+        super(staff_id,staff_type);
+
     }
-
 
     public String getName() {
         return name;
