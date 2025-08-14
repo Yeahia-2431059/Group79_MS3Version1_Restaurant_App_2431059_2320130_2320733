@@ -2,45 +2,30 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.app.restaurant_app.Ashik.CustomerMain"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.text.*?>
 
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodcourt.controllers.BrowseMenuController">
+    <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+        <Label text="Browse Restaurant Menus" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Select Restaurant:"/>
+            <ComboBox fx:id="restaurantComboBox" prefWidth="200"/>
+        </HBox>
+
+        <ListView fx:id="menuCategoriesList" prefWidth="300" prefHeight="150"/>
+
+        <ListView fx:id="menuItemsList" prefWidth="500" prefHeight="200">
+            <placeholder>
+                <Label text="Select a category to view items"/>
+            </placeholder>
+        </ListView>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="View Details" fx:id="viewDetailsBtn" onAction="#handleViewDetails"/>
+            <Button text="Add to Cart" fx:id="addToCartBtn" onAction="#handleAddToCart"/>
+        </HBox>
+
+        <TextArea fx:id="itemDetailsArea" prefWidth="500" prefHeight="100" editable="false" wrapText="true"/>
+    </VBox>
 </AnchorPane>
-        <?xml version="1.0" encoding="UTF-8"?>
-
-        <?import javafx.geometry.Insets?>
-        <?import javafx.scene.control.*?>
-        <?import javafx.scene.layout.*?>
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group79.controllers.CustomerController">
-<top>
-    <HBox spacing="10" padding="10">
-        <Label text="Customer View - Browse Menu" style="-fx-font-size:18px; -fx-font-weight:bold;"/>
-        <Pane HBox.hgrow="ALWAYS"/>
-        <TextField fx:id="searchField" promptText="Search items..." onAction="#onSearch"/>
-        <Button text="Search" onAction="#onSearch"/>
-    </HBox>
-</top>
-<center>
-    <SplitPane dividerPositions="0.4">
-        <ListView fx:id="menuList" prefWidth="280"/>
-        <VBox spacing="8" padding="10">
-            <Label text="Item Details" style="-fx-font-size:14px; -fx-font-weight:bold;"/>
-            <TextArea fx:id="itemDetails" wrapText="true"/>
-            <HBox spacing="10">
-                <Button fx:id="addToCartBtn" text="Add to Cart" onAction="#onAddToCart"/>
-                <Button text="Customize" />
-                <Button text="Proceed to Checkout" />
-            </HBox>
-        </VBox>
-    </SplitPane>
-</center>
-<bottom>
-    <HBox padding="10" spacing="12">
-        <Label text="Cart: "/>
-        <Label text="(Cart preview placeholder)"/>
-    </HBox>
-</bottom>
-</BorderPane>
