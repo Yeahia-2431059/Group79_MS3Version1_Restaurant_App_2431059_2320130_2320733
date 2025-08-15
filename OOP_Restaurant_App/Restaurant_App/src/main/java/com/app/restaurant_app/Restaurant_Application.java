@@ -2,6 +2,7 @@ package com.app.restaurant_app;
 
 import com.app.restaurant_app.Yeahia.model_classes.Restaurant_manager;
 import com.app.restaurant_app.Yeahia.model_classes.Waiter_staff;
+import com.app.restaurant_app.Utility.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,6 +21,8 @@ public class Restaurant_Application extends Application {
     }
 
     public static void main(String[] args) throws IOException{
+//        Employee employee = new Restaurant_manager(100000,"Restaurant Manager");
+//        Utility.write_object("data_files/employee_data.bin",employee);
         launch();
     }
 }

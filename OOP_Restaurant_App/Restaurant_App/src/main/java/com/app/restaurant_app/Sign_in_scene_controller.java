@@ -1,6 +1,7 @@
 package com.app.restaurant_app;
 
 import com.app.restaurant_app.Ashik.controller_classes.Customer_dashboard_controller;
+import com.app.restaurant_app.Ashik.model_classes.Accountant;
 import com.app.restaurant_app.Ashik.model_classes.Customer;
 import com.app.restaurant_app.Yeahia.controller_classes.Restaurant_manager_dashboard_controller;
 import com.app.restaurant_app.Yeahia.controller_classes.Waiter_dashboard_controller;
@@ -48,37 +49,41 @@ public class Sign_in_scene_controller {
 
             if (is_integer(unique_identifier)) {
                 Employee employee = verify_sign_in_and_return_employee(Integer.parseInt(unique_identifier));
-                switch (employee) {
+                if (employee instanceof Waiter_staff waiter_staff) {
+                    waiter_staff.setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
+                    waiter_staff.setPassword(password_textfield.getText());
+                    waiter_staff.setName(name_textfield.getText());
+                    scene_changer(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
+                    Waiter_dashboard_controller.get_resources(waiter_staff);
+                    write_object("data_files/employee_data.bin", waiter_staff);
 
-                    case Waiter_staff waiter_staff -> {
-                        waiter_staff.setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
-                        waiter_staff.setPassword(password_textfield.getText());
-                        waiter_staff.setName(name_textfield.getText());
-                        scene_changer(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
-                        Waiter_dashboard_controller.get_resources(waiter_staff);
-                        write_object("data_files/employee_data.bin", employee);
-                    }
-                    case Restaurant_manager restaurant_manager -> {
-                        if (Restaurant_manager.getSame_type_staff_count() == 0) {
-                            restaurant_manager.setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
-                            restaurant_manager.setPassword(password_textfield.getText());
-                            restaurant_manager.setName(name_textfield.getText());
+                }
+                else if (employee instanceof Restaurant_manager restaurant_manager) {
+                    if (Restaurant_manager.getSame_type_staff_count() == 0) {
+                        restaurant_manager.setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
+                        restaurant_manager.setPassword(password_textfield.getText());
+                        restaurant_manager.setName(name_textfield.getText());
 
-                            Restaurant_manager.setSame_type_staff_count((byte) (Restaurant_manager.getSame_type_staff_count() + 1));
-                            scene_changer(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
-                            Restaurant_manager_dashboard_controller.get_resources(restaurant_manager);
-                            write_object("data_files/employee_data.bin", restaurant_manager);
-                        } else {
-                            show_information_alert(Alert.AlertType.INFORMATION, "Restaurant manager already exists");
-                        }
+                        Restaurant_manager.setSame_type_staff_count((byte) (Restaurant_manager.getSame_type_staff_count() + 1));
+                        scene_changer(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
+                        Restaurant_manager_dashboard_controller.get_resources(restaurant_manager);
+                        write_object("data_files/employee_data.bin", restaurant_manager);
+                    } else {
+                        show_information_alert("Restaurant manager already exists");
                     }
-                    case null ->{
 
-                    }
-                    default -> {
-                        write_object("data_files/employee_data.bin",employee);
-                        show_information_alert(Alert.AlertType.INFORMATION,"employee was returned, and was valid but didn't match any instance check, please debug the code");
-                    }
+                }
+                else if (employee instanceof Accountant accountant) {
+
+
+                }
+                else if (employee == null) {
+
+
+                }
+                else {
+                    write_object("data_files/employee_data.bin", employee);
+                    show_information_alert("employee was returned, and was valid but didn't match any instance check, please debug the code");
                 }
             }
             else {
@@ -110,7 +115,7 @@ public class Sign_in_scene_controller {
             }
         }
         else {
-            show_information_alert(Alert.AlertType.INFORMATION,"Invalid input");
+            show_information_alert("Invalid input");
 
         }
         gmail_textfield.clear();

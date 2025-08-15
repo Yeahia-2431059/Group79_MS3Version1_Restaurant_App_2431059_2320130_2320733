@@ -31,16 +31,16 @@ public class Utility{
 
     public static void write_object(String file_path, Object object) throws IOException{
 
-        ObjectOutputStream object_output_stream;
-        File file = new File(file_path);
+            ObjectOutputStream object_output_stream;
+            File file = new File(file_path);
 
-        if (file.exists()){
-            FileOutputStream file_output_stream = new FileOutputStream(file, true);
-            object_output_stream = new AppendableObjectOutputStream(file_output_stream);
-        }else {
-            FileOutputStream file_output_stream = new FileOutputStream(file);
-            object_output_stream = new ObjectOutputStream(file_output_stream);
-        }
+            if (file.exists()){
+                FileOutputStream file_output_stream = new FileOutputStream(file, true);
+                object_output_stream = new AppendableObjectOutputStream(file_output_stream);
+            }else {
+                FileOutputStream file_output_stream = new FileOutputStream(file);
+                object_output_stream = new ObjectOutputStream(file_output_stream);
+            }
 
         object_output_stream.writeObject(object);
         object_output_stream.close();
@@ -102,8 +102,8 @@ public class Utility{
         }
     }
 
-    public static void show_information_alert(Alert.AlertType alert_type, String alert_information){
-        Alert alert = new Alert(alert_type,alert_information);
+    public static void show_information_alert(String alert_information){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,alert_information);
         alert.showAndWait();
     }
 }

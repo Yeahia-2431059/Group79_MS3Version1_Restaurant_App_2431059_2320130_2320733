@@ -2,7 +2,9 @@ package com.app.restaurant_app.Yeahia.model_classes;
 
 import com.app.restaurant_app.Employee;
 
-public class Waiter_staff extends Employee {
+import java.io.Serializable;
+
+public class Waiter_staff extends Employee implements Serializable {
     private String name;
     private long mobile_number;
     private static byte same_type_staff_count = 0;
