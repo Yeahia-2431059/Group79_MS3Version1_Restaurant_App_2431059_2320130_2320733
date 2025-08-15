@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.foodcourt.controllers.customer.PlaceOrderController" spacing="10" alignment="CENTER">
+    <Label text="Place Your Order" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="cartTable" prefWidth="600" prefHeight="200">
+        <columns>
+            <TableColumn text="Item" prefWidth="250" fx:id="itemCol"/>
+            <TableColumn text="Customization" prefWidth="200" fx:id="customizationCol"/>
+            <TableColumn text="Price" prefWidth="100" fx:id="priceCol"/>
+            <TableColumn text="Qty" prefWidth="50" fx:id="qtyCol"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Order Type:"/>
+        <ToggleGroup fx:id="orderTypeGroup"/>
+        <RadioButton text="Dine-In" toggleGroup="$orderTypeGroup" userData="DINE_IN"/>
+        <RadioButton text="Takeout" toggleGroup="$orderTypeGroup" userData="TAKEOUT" selected="true"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER" fx:id="dineInBox" visible="false">
+        <Label text="Table Number:"/>
+        <TextField fx:id="tableNumberField" prefWidth="50"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER" fx:id="takeoutBox">
+        <Label text="Pickup Time:"/>
+        <ComboBox fx:id="pickupTimeCombo" prefWidth="150"/>
+    </HBox>
+
+    <Label fx:id="totalLabel" text="Total: $0.00" style="-fx-font-weight: bold;"/>
+
+    <Button text="Proceed to Payment" onAction="#handleProceedToPayment"/>
+    <Button text="Back to Menu" onAction="#handleBackToMenu"/>
+</VBox>

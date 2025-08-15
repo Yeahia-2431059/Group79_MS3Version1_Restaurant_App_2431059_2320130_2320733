@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.foodcourt.controllers.accountant.ManageSalariesController" spacing="10" alignment="CENTER">
+    <Label text="Manage Staff Salaries" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Filter by Position:"/>
+        <ComboBox fx:id="positionFilter" prefWidth="150"/>
+        <Button text="Apply Filter" onAction="#handleFilter"/>
+    </HBox>
+
+    <TableView fx:id="staffTable" prefWidth="600" prefHeight="300">
+        <columns>
+            <TableColumn text="ID" prefWidth="50" fx:id="idCol"/>
+            <TableColumn text="Name" prefWidth="150" fx:id="nameCol"/>
+            <TableColumn text="Position" prefWidth="150" fx:id="positionCol"/>
+            <TableColumn text="Current Salary" prefWidth="100" fx:id="salaryCol"/>
+            <TableColumn text="New Salary" prefWidth="100" fx:id="newSalaryCol"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Total Monthly Payroll:" style="-fx-font-weight: bold;"/>
+        <Label fx:id="totalPayrollLabel" text="$0.00" style="-fx-font-weight: bold;"/>
+    </HBox>
+
+    <Button text="Save Changes" onAction="#handleSaveChanges" style="-fx-font-weight: bold;"/>
+</VBox>
