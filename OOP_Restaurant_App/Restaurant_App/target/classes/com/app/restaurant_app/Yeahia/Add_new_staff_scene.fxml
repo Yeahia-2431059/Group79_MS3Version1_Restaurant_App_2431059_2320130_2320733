@@ -13,7 +13,7 @@
     <TextField fx:id="new_staff_id_textfield" layoutX="106.0" layoutY="43.0" />
     <Label layoutX="31.0" layoutY="95.0" text="Staff Type:  " />
     <ChoiceBox fx:id="new_staff_type_choicebox" layoutX="106.0" layoutY="91.0" prefWidth="150.0" />
-    <Button layoutX="234.0" layoutY="477.0" mnemonicParsing="false" onAction="#add_staff_button" prefHeight="26.0" prefWidth="132.0" text="Add staff" />
+    <Button layoutX="234.0" layoutY="477.0" mnemonicParsing="false" onAction="#add_staff_button_on_action" prefHeight="26.0" prefWidth="132.0" text="Add staff" />
    <TableView fx:id="schedule_tableview" layoutX="136.0" layoutY="235.0" prefHeight="200.0" prefWidth="325.0">
      <columns>
        <TableColumn fx:id="days_coloumn" prefWidth="118.4000244140625" text="Days" />

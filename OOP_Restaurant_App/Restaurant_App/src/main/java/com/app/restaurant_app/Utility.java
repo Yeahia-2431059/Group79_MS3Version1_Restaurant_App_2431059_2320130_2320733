@@ -4,12 +4,12 @@ package com.app.restaurant_app;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
-
 
 
 public class Utility{
@@ -27,6 +27,30 @@ public class Utility{
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+    public static <T> T scene_changer_returns_controller(ActionEvent actionEvent, String scenePath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Utility.class.getResource(scenePath));
+        Parent root = loader.load();
+
+        T controller = loader.getController();
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        return controller;
+    }
+    public static <T> T new_scene_returns_controller(String scenePath) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Utility.class.getResource(scenePath));
+        Parent root = loader.load();
+
+        T controller = loader.getController();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        return controller;
     }
 
     public static void write_object(String file_path, Object object) throws IOException{
@@ -77,6 +101,10 @@ public class Utility{
         }
         return object_arraylist;
 
+    }
+    public static void close_window(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     public static boolean is_integer(String string) {

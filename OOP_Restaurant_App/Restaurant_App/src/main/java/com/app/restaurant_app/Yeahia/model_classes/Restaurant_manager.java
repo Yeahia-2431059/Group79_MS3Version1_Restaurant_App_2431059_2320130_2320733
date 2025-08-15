@@ -10,6 +10,7 @@ import com.app.restaurant_app.Yeahia.controller_classes.Dummy_classes.Select_day
 
 import static com.app.restaurant_app.Utility.*;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -24,65 +25,60 @@ public class Restaurant_manager extends Employee implements Serializable {
     }
     public static Employee validate_and_verify_then_add_staff_return(String employee_id, String employee_type, ArrayList<Select_days_for_add_staff_dummy> schedule){
         if (add_staff_schedule_validation(schedule)){
-            if (is_integer(employee_id) && employee_id.length() == 6){
+            if (is_integer(employee_id) && employee_id.length() == 6) {
+
+                int staff_id = Integer.parseInt(employee_id);
+
                 try {
-                    ArrayList<Object> object_arraylist = read_object("data_files/employee_data");
-                    for (Object employee : object_arraylist){
-                        if (((Employee)employee).getEmployee_id() == Integer.parseInt(employee_id)){
-                            show_information_alert("Staff with this id already exists please use another id");
+                    ArrayList<Object> object_arraylist = read_object("data_files/employee_data.bin");
+
+                    // 3. Check for duplicate IDs
+                    for (Object employeeObj : object_arraylist) {
+                        Employee existingEmployee = (Employee) employeeObj;
+                        if (existingEmployee.getEmployee_id() == staff_id) {
+                            show_information_alert("Staff with this ID already exists, please use another ID");
                             return null;
                         }
-                        else{
-                            Employee employee1;
-                            int staff_id =  Integer.parseInt(employee_id);
-                            if (employee_type.equals("Waiter staff")) {
-                                employee1 = new Waiter_staff(staff_id, employee_type);
-                                write_object("data_files/employee_data",employee1);
-                                return employee1;
-                            }
-                            else if (employee_type.equals("Accountant")) {
-                                employee1 = new Accountant(staff_id, employee_type);
-                                write_object("data_files/employee_data",employee1);
-                                return employee1;
-                            }
-                            else if (employee_type.equals("Marketing manager")) {
-                                employee1 = new Marketing_manager(staff_id, employee_type);
-                                write_object("data_files/employee_data",employee1);
-                                return employee1;
-                            }
-                            else if (employee_type.equals("Inventory manager")) {
-                                employee1 = new Inventory_manager(staff_id, employee_type);
-                                write_object("data_files/employee_data",employee1);
-                                return employee1;
-                            }
-                            else if (employee_type.equals("Kitchen staff")) {
-                                employee1 = new Kitchen_staff(staff_id, employee_type);
-                                write_object("data_files/employee_data",employee1);
-                                return employee1;
-                            }
-                            else if (employee_type.equals("Delivery driver")) {
-                                employee1 = new Delivery_driver(staff_id, employee_type);
-                                write_object("data_files/employee_data",employee1);
-                                return employee1;
-                            }
-                            else {
-                                show_information_alert("Didn't get picked by any of the statements, validate_and_verify_add_staff_and_return_employee on Restaurant manager class ");
-                                return null;
-                            }
-                        }
                     }
-                    show_information_alert("why did it come here, check validate_and_verify_add_staff_and_return_employee on Restaurant manager class");
-                    return null;
                 }
-                catch (Exception e){
-                    show_information_alert("Exception in validate_and_verify_add_staff_and_return_employee method in Restaurant manager class, fix it");
+                catch (Exception e) {
+                    show_information_alert("smth happened");
                     return null;
                 }
             }
-            else{
-                show_information_alert("given staff id is invalid");
+            else {
+                show_information_alert("Invalid id");
                 return null;
             }
+
+            Employee employee1;
+            int staff_id = Integer.parseInt(employee_id);
+
+            if (employee_type.equals("Waiter staff")) {
+                employee1 = new Waiter_staff(staff_id, employee_type);
+            } else if (employee_type.equals("Accountant")) {
+                employee1 = new Accountant(staff_id, employee_type);
+            } else if (employee_type.equals("Marketing manager")) {
+                employee1 = new Marketing_manager(staff_id, employee_type);
+            } else if (employee_type.equals("Inventory manager")) {
+                employee1 = new Inventory_manager(staff_id, employee_type);
+            } else if (employee_type.equals("Kitchen staff")) {
+                employee1 = new Kitchen_staff(staff_id, employee_type);
+            } else if (employee_type.equals("Delivery driver")) {
+                employee1 = new Delivery_driver(staff_id, employee_type);
+            } else {
+                show_information_alert("Invalid employee type");
+                return null;
+            }
+
+            // 5. Save employee
+            try{
+                write_object("data_files/employee_data.bin", employee1);
+            } catch (Exception e) {
+                show_information_alert("smth happened");
+            }
+
+            return employee1;
         }
         else {
             return null;

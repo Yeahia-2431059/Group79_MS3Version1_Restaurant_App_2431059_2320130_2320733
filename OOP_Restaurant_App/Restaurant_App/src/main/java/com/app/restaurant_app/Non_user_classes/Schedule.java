@@ -2,10 +2,11 @@ package com.app.restaurant_app.Non_user_classes;
 
 import com.app.restaurant_app.Yeahia.controller_classes.Dummy_classes.Select_days_for_add_staff_dummy;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Schedule {
-    private int employee_id;
+public class Schedule implements Serializable {
+    private final int employee_id;
     private ArrayList<Select_days_for_add_staff_dummy> assigned_schedule_arraylist;
 
     public Schedule(int employee_id, ArrayList<Select_days_for_add_staff_dummy> assigned_schedule_arraylist) {

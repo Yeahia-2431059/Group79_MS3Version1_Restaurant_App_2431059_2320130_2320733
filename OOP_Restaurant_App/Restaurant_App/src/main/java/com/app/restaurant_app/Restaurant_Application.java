@@ -1,7 +1,6 @@
 package com.app.restaurant_app;
 
 import com.app.restaurant_app.Yeahia.model_classes.Restaurant_manager;
-import com.app.restaurant_app.Yeahia.model_classes.Waiter_staff;
 import com.app.restaurant_app.Utility.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,7 @@ public class Restaurant_Application extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Restaurant_Application.class.getResource("Log_in_scene.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Restaurant");
+        stage.setTitle("Restaurant App");
         stage.setScene(scene);
         stage.show();
     }

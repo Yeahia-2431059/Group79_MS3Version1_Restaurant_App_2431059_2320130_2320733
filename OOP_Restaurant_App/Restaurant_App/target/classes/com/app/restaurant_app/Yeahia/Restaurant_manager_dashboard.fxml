@@ -8,25 +8,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.restaurant_app.Yeahia.controller_classes.Restaurant_manager_dashboard_controller">
-    <Button layoutX="368.0" layoutY="535.0" mnemonicParsing="false" onAction="#Manage_staff_button" prefHeight="26.0" prefWidth="205.0" text="Manage Selected Staff" />
+    <Button layoutX="368.0" layoutY="535.0" mnemonicParsing="false" onAction="#Manage_staff_button_on_action" prefHeight="26.0" prefWidth="205.0" text="Manage Selected Staff" />
     <TableView fx:id="staff_tableview" layoutX="35.0" layoutY="335.0" prefHeight="200.0" prefWidth="538.0">
       <columns>
-          <TableColumn prefWidth="75.0" text="Staff ID" />
-          <TableColumn prefWidth="75.0" text="Designation" />
-          <TableColumn prefWidth="75.0" />
+         <TableColumn fx:id="name_table_coloumn" prefWidth="160.00000381469727" text="Name" />
+          <TableColumn fx:id="staff_id_table_coloumn" prefWidth="131.1999969482422" text="Staff ID" />
+          <TableColumn fx:id="designation_table_coloumn" prefWidth="127.20001220703125" text="Designation" />
+         <TableColumn fx:id="mobile_no_table_coloumn" prefWidth="121.5999755859375" text="Number" />
       </columns>
     </TableView>
     <Label layoutX="390.0" layoutY="309.0" text="Filtered staff count :" />
     <Label fx:id="filtered_staff_count_label" layoutX="504.0" layoutY="309.0" />
-    <Button layoutX="35.0" layoutY="536.0" mnemonicParsing="false" onAction="#add_staff_button" prefHeight="26.0" prefWidth="170.0" text="Add new staff" />
+    <Button layoutX="35.0" layoutY="536.0" mnemonicParsing="false" onAction="#add_staff_button_on_action" prefHeight="26.0" prefWidth="170.0" text="Add new staff" />
     <ChoiceBox fx:id="staff_filter_choice_box" layoutX="35.0" layoutY="305.0" prefWidth="150.0" />
-    <Button fx:id="filter_staff_button" layoutX="206.0" layoutY="305.0" mnemonicParsing="false" text="Filter" />
+    <Button layoutX="206.0" layoutY="305.0" mnemonicParsing="false" onAction="#filter_staff_button_on_action" text="Filter" />
    <Label layoutX="40.0" layoutY="32.0" text="Name : " />
    <Label layoutX="40.0" layoutY="57.0" text="Designation : " />
    <Label layoutX="313.0" layoutY="32.0" text="ID :" />
    <Label fx:id="name_label" layoutX="124.0" layoutY="31.0" prefHeight="18.0" prefWidth="98.0" />
-   <Label fx:id="ID_label" layoutX="337.0" layoutY="31.0" prefHeight="18.0" prefWidth="106.0" />
-   <Label fx:id="Designation_label" layoutX="120.0" layoutY="57.0" prefHeight="18.0" prefWidth="106.0" />
+   <Label fx:id="id_label" layoutX="337.0" layoutY="31.0" prefHeight="18.0" prefWidth="106.0" />
+   <Label fx:id="designation_label" layoutX="120.0" layoutY="57.0" prefHeight="18.0" prefWidth="106.0" />
    <Button layoutX="40.0" layoutY="89.0" mnemonicParsing="false" onAction="#see_profile_button_on_action" text="See profile" />
-   <Button layoutX="35.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="See Products" />
+   <Button layoutX="35.0" layoutY="240.0" mnemonicParsing="false" onAction="#see_product_button_on_action" prefHeight="26.0" prefWidth="150.0" text="See Products" />
+   <Label fx:id="filtered_staff_label" layoutX="504.0" layoutY="309.0" prefHeight="18.0" prefWidth="58.0" />
 </AnchorPane>
