@@ -1,6 +1,8 @@
 package com.app.restaurant_app.Ashik.model_classes;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
     private final String gmail;
     private String password;
     private String name;

@@ -1,19 +1,112 @@
 package com.app.restaurant_app.Yeahia.model_classes;
 
+import com.app.restaurant_app.Ashik.model_classes.Accountant;
 import com.app.restaurant_app.Employee;
+import com.app.restaurant_app.Sakib.model_classes.Inventory_manager;
+import com.app.restaurant_app.Sakib.model_classes.Kitchen_staff;
+import com.app.restaurant_app.Soyaiminul.model_classes.Delivery_driver;
+import com.app.restaurant_app.Soyaiminul.model_classes.Marketing_manager;
+import com.app.restaurant_app.Yeahia.controller_classes.Dummy_classes.Select_days_for_add_staff_dummy;
 
-public class Restaurant_manager extends Employee {
+import static com.app.restaurant_app.Utility.*;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Restaurant_manager extends Employee implements Serializable {
 
     private String name;
     private long mobile_number;
-    private static byte same_type_staff_count = 1;
+    private static byte same_type_staff_count = 0;
 
-    public Restaurant_manager(int staff_id, String name, long mobile_number, String staff_type, String password) {
-        super(staff_id,staff_type,password);
-        this.name = name;
-        this.mobile_number = mobile_number;
+    public Restaurant_manager(int staff_id, String staff_type) {
+        super(staff_id,staff_type);
     }
-
+    public static Employee validate_and_verify_then_add_staff_return(String employee_id, String employee_type, ArrayList<Select_days_for_add_staff_dummy> schedule){
+        if (add_staff_schedule_validation(schedule)){
+            if (is_integer(employee_id) && employee_id.length() == 6){
+                try {
+                    ArrayList<Object> object_arraylist = read_object("data_files/employee_data");
+                    for (Object employee : object_arraylist){
+                        if (((Employee)employee).getEmployee_id() == Integer.parseInt(employee_id)){
+                            show_information_alert("Staff with this id already exists please use another id");
+                            return null;
+                        }
+                        else{
+                            Employee employee1;
+                            int staff_id =  Integer.parseInt(employee_id);
+                            if (employee_type.equals("Waiter staff")) {
+                                employee1 = new Waiter_staff(staff_id, employee_type);
+                                write_object("data_files/employee_data",employee1);
+                                return employee1;
+                            }
+                            else if (employee_type.equals("Accountant")) {
+                                employee1 = new Accountant(staff_id, employee_type);
+                                write_object("data_files/employee_data",employee1);
+                                return employee1;
+                            }
+                            else if (employee_type.equals("Marketing manager")) {
+                                employee1 = new Marketing_manager(staff_id, employee_type);
+                                write_object("data_files/employee_data",employee1);
+                                return employee1;
+                            }
+                            else if (employee_type.equals("Inventory manager")) {
+                                employee1 = new Inventory_manager(staff_id, employee_type);
+                                write_object("data_files/employee_data",employee1);
+                                return employee1;
+                            }
+                            else if (employee_type.equals("Kitchen staff")) {
+                                employee1 = new Kitchen_staff(staff_id, employee_type);
+                                write_object("data_files/employee_data",employee1);
+                                return employee1;
+                            }
+                            else if (employee_type.equals("Delivery driver")) {
+                                employee1 = new Delivery_driver(staff_id, employee_type);
+                                write_object("data_files/employee_data",employee1);
+                                return employee1;
+                            }
+                            else {
+                                show_information_alert("Didn't get picked by any of the statements, validate_and_verify_add_staff_and_return_employee on Restaurant manager class ");
+                                return null;
+                            }
+                        }
+                    }
+                    show_information_alert("why did it come here, check validate_and_verify_add_staff_and_return_employee on Restaurant manager class");
+                    return null;
+                }
+                catch (Exception e){
+                    show_information_alert("Exception in validate_and_verify_add_staff_and_return_employee method in Restaurant manager class, fix it");
+                    return null;
+                }
+            }
+            else{
+                show_information_alert("given staff id is invalid");
+                return null;
+            }
+        }
+        else {
+            return null;
+        }
+    }
+    public static Boolean add_staff_schedule_validation(ArrayList<Select_days_for_add_staff_dummy> assigned_schedule){
+        if (assigned_schedule.size() == 4){
+            ArrayList<String> days_array = new ArrayList<String>();
+            for (Select_days_for_add_staff_dummy schedule: assigned_schedule){
+                if (days_array.contains(schedule.getDay())){
+                    show_information_alert("can't have two shifts on the same day");
+                    return false;
+                }
+                else {
+                    days_array.add(schedule.getDay());
+                }
+            }
+            return true;
+        }
+        else {
+            show_information_alert("Schedule consists of 4 shifts (28 hours per week)");
+            return false;
+        }
+    }
 
     public String getName() {
         return name;

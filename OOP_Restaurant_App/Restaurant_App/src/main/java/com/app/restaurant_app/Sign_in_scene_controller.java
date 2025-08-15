@@ -1,6 +1,7 @@
 package com.app.restaurant_app;
 
 import com.app.restaurant_app.Ashik.controller_classes.Customer_dashboard_controller;
+import com.app.restaurant_app.Ashik.model_classes.Accountant;
 import com.app.restaurant_app.Ashik.model_classes.Customer;
 import com.app.restaurant_app.Yeahia.controller_classes.Restaurant_manager_dashboard_controller;
 import com.app.restaurant_app.Yeahia.controller_classes.Waiter_dashboard_controller;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static com.app.restaurant_app.Employee.verify_sign_in_and_return_employee;
 import static com.app.restaurant_app.Utility.*;
 
 
@@ -30,57 +32,63 @@ public class Sign_in_scene_controller {
 
     @FXML
     public void sign_in_on_action(ActionEvent actionEvent) throws IOException {
-        boolean allFieldsEmpty =
+
+        boolean are_any_fields_empty =
                 gmail_textfield.getText().isEmpty() &&
                         mobile_number_textfield.getText().isEmpty() &&
                         password_textfield.getText().isEmpty() &&
                         name_textfield.getText().isEmpty();
-
-        boolean gmailValid =
+        boolean is_number_valid =
+                (mobile_number_textfield.getText().length() == 11) && is_long(mobile_number_textfield.getText()) && mobile_number_textfield.getText().startsWith("0");
+        boolean is_gmail_valid =
                 (gmail_textfield.getText().length() == 6 && is_integer(gmail_textfield.getText())) ||
                         gmail_textfield.getText().endsWith("@gmail.com");
-        String alert_string;
-        Alert alert;
-        if((!allFieldsEmpty && gmailValid)) {
+
+        if(!are_any_fields_empty && is_gmail_valid && is_number_valid) {
             String unique_identifier = gmail_textfield.getText();
 
             if (is_integer(unique_identifier)) {
+                Employee employee = verify_sign_in_and_return_employee(Integer.parseInt(unique_identifier));
+                if (employee instanceof Waiter_staff waiter_staff) {
+                    waiter_staff.setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
+                    waiter_staff.setPassword(password_textfield.getText());
+                    waiter_staff.setName(name_textfield.getText());
+                    scene_changer(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
+                    Waiter_dashboard_controller.get_resources(waiter_staff);
+                    write_object("data_files/employee_data.bin", waiter_staff);
 
-                int employee_id = Integer.parseInt(unique_identifier);
-                ArrayList<Object> employee_arraylist = new ArrayList<Object>(Utility.read_object("data_files/employee_data.bin"));
-
-                for (Object employee : employee_arraylist) {
-
-                    if ((((Employee) employee).getEmployee_id()) == employee_id) {
-
-                        if (((Employee) employee).getPassword().isEmpty()) {
-                            ((Employee) employee).setPassword(password_textfield.getText());
-
-                            if (employee instanceof Waiter_staff) {
-                                ((Waiter_staff) employee).setName(name_textfield.getText());
-                                ((Waiter_staff) employee).setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
-                                Waiter_staff.setSame_type_staff_count((byte) (Waiter_staff.getSame_type_staff_count() + 1));
-
-                                write_object("data_files/employee_data.bin", employee);
-
-                                scene_changer(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
-                                Waiter_dashboard_controller.get_resources((Waiter_staff) employee);
-                            }
-                            //                        else if (employee instanceof Restaurant_manager) {
-                            //                            ((Restaurant_manager) employee).setName(name_textfield.getText());
-                            //                            ((Restaurant_manager) employee).setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
-                            //
-                            //                            scene_changer(actionEvent,"Yeahia/Restaurant_manager_dashboard.fxml");
-                            //                            Restaurant_manager_dashboard_controller.get_resources((Restaurant_manager)employee);
-                            //                        }
-                        } else {
-                            alert = new Alert(Alert.AlertType.INFORMATION, "Already exists!, please log in instead");
-                            alert.showAndWait();
-                        }
-                    }
                 }
-            } else {
+                else if (employee instanceof Restaurant_manager restaurant_manager) {
+                    if (Restaurant_manager.getSame_type_staff_count() == 0) {
+                        restaurant_manager.setMobile_number(Long.parseLong(mobile_number_textfield.getText()));
+                        restaurant_manager.setPassword(password_textfield.getText());
+                        restaurant_manager.setName(name_textfield.getText());
 
+                        Restaurant_manager.setSame_type_staff_count((byte) (Restaurant_manager.getSame_type_staff_count() + 1));
+                        scene_changer(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
+                        Restaurant_manager_dashboard_controller.get_resources(restaurant_manager);
+                        write_object("data_files/employee_data.bin", restaurant_manager);
+                    } else {
+                        show_information_alert("Restaurant manager already exists");
+                    }
+
+                }
+                else if (employee instanceof Accountant accountant) {
+
+
+                }
+                else if (employee == null) {
+
+
+                }
+                else {
+                    write_object("data_files/employee_data.bin", employee);
+                    show_information_alert("employee was returned, and was valid but didn't match any instance check, please debug the code");
+                }
+            }
+            else {
+                String alert_string;
+                Alert alert;
                 ArrayList<Object> customer_arraylist = new ArrayList<>(Utility.read_object("data_files/customer_data.bin"));
 
                 for (Object customer : customer_arraylist) {
@@ -107,8 +115,13 @@ public class Sign_in_scene_controller {
             }
         }
         else {
-            alert = new Alert(Alert.AlertType.INFORMATION,"Invalid input");
-            alert.showAndWait();
+            show_information_alert("Invalid input");
+
         }
+        gmail_textfield.clear();
+        password_textfield.clear();
+        mobile_number_textfield.clear();
+        name_textfield.clear();
     }
+
 }
