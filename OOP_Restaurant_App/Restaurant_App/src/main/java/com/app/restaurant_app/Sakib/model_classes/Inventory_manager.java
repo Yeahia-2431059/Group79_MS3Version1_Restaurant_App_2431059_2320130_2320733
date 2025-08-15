@@ -7,7 +7,22 @@ import java.io.Serializable;
 public class Inventory_manager extends Employee implements Serializable {
     private String name;
     private long mobile_number;
-    private static byte same_type_staff_count = 0;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getMobile_number() {
+        return mobile_number;
+    }
+
+    public void setMobile_number(long mobile_number) {
+        this.mobile_number = mobile_number;
+    }
 
     public Inventory_manager(int staff_id, String staff_type) {
         super(staff_id,staff_type);

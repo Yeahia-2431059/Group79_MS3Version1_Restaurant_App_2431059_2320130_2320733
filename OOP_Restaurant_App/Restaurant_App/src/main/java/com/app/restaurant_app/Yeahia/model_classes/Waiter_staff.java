@@ -7,7 +7,6 @@ import java.io.Serializable;
 public class Waiter_staff extends Employee implements Serializable {
     private String name;
     private long mobile_number;
-    private static byte same_type_staff_count = 0;
     private static int wage_per_hour;
 
     public Waiter_staff(int staff_id ,String staff_type) {
@@ -40,11 +39,4 @@ public class Waiter_staff extends Employee implements Serializable {
         this.mobile_number = mobile_number;
     }
 
-    public static short getSame_type_staff_count() {
-        return same_type_staff_count;
-    }
-
-    public static void setSame_type_staff_count(byte same_type_staff_count) {
-        Waiter_staff.same_type_staff_count = same_type_staff_count;
-    }
 }

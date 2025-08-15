@@ -1,9 +1,19 @@
 package com.app.restaurant_app;
+import com.app.restaurant_app.Ashik.model_classes.Accountant;
+import com.app.restaurant_app.Sakib.controller_classes.Inventory_manager_dashboard_controller;
+import com.app.restaurant_app.Sakib.controller_classes.Kitchen_staff_dashboard_controller;
+import com.app.restaurant_app.Sakib.model_classes.Inventory_manager;
+import com.app.restaurant_app.Sakib.model_classes.Kitchen_staff;
+import com.app.restaurant_app.Soyaiminul.controller_classes.Delivery_driver_dashboard_controller;
+import com.app.restaurant_app.Soyaiminul.controller_classes.Marketing_manager_dashboard_controller;
+import com.app.restaurant_app.Soyaiminul.model_classes.Delivery_driver;
+import com.app.restaurant_app.Soyaiminul.model_classes.Marketing_manager;
 import com.app.restaurant_app.Yeahia.controller_classes.Restaurant_manager_dashboard_controller;
 import com.app.restaurant_app.Yeahia.controller_classes.Waiter_dashboard_controller;
 import com.app.restaurant_app.Yeahia.model_classes.Restaurant_manager;
 import com.app.restaurant_app.Yeahia.model_classes.Waiter_staff;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import static com.app.restaurant_app.Utility.*;
 
@@ -27,20 +37,36 @@ public class Log_in_scene_controller {
             int employee_id = Integer.parseInt(unique_identifier);
             Employee employee = Employee.verify_login_and_return_employee(employee_id,password_textfield.getText());
 
-            switch (employee) {
-                case null -> {
+            if (employee == null) {
+                // do nothing
+            }
+            else if (employee instanceof Waiter_staff waiter_staff) {
 
-                }
-                case Waiter_staff waiterStaff -> {
-                    scene_changer(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
-                    Waiter_dashboard_controller.get_resources(waiterStaff);
-                }
-                case Restaurant_manager restaurantManager -> {
-                    scene_changer(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
-                    Restaurant_manager_dashboard_controller.get_resources(restaurantManager);
-                }
-                default -> {
-                }
+                Waiter_dashboard_controller controller =  scene_changer_returns_controller(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
+                controller.get_resources(waiter_staff);
+            }
+            else if (employee instanceof Restaurant_manager restaurant_manager) {
+                Restaurant_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
+                controller.get_resources(restaurant_manager);
+            }
+            else if (employee instanceof Marketing_manager marketing_manager){
+                Marketing_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Soyaiminul/marketing_manager_dashboard.fxml");
+                controller.get_resources(marketing_manager);
+            }
+            else if (employee instanceof Delivery_driver delivery_driver) {
+                Delivery_driver_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Soyaiminul/delivery_driver_dashboard.fxml");
+                controller.get_resources(delivery_driver);
+            }
+            else if (employee instanceof Inventory_manager inventory_manager) {
+                Inventory_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Sakib/Inventory_manager_dashboard.fxml");
+                controller.get_resources(inventory_manager);
+            }
+            else if (employee instanceof Kitchen_staff kitchen_staff){
+                Kitchen_staff_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Sakib/kitchen_staff_dashboard.fxml");
+                controller.get_resources(kitchen_staff);
+            }
+            else {
+
             }
         }
         else {

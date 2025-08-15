@@ -6,7 +6,7 @@ public class Waiter_dashboard_controller {
     public void initialize(){
 
     }
-    public static void get_resources(Waiter_staff waiter_staff){
+    public void get_resources(Waiter_staff waiter_staff){
 
     }
 }

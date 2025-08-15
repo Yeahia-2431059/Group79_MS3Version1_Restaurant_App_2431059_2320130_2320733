@@ -12,10 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 
-import static com.app.restaurant_app.Utility.show_information_alert;
-import static com.app.restaurant_app.Utility.write_object;
-import static com.app.restaurant_app.Yeahia.controller_classes.Restaurant_manager_dashboard_controller.get_resources_add_staff_controller;
-import static com.app.restaurant_app.Yeahia.model_classes.Restaurant_manager.add_staff_schedule_validation;
+import static com.app.restaurant_app.Utility.*;
 import static com.app.restaurant_app.Yeahia.model_classes.Restaurant_manager.validate_and_verify_then_add_staff_return;
 
 public class Add_new_staff_scene_controller {
@@ -65,12 +62,12 @@ public class Add_new_staff_scene_controller {
         if (employee != null){
             Schedule employee_schedule = new Schedule(Integer.parseInt(new_staff_id_textfield.getText()),schedule);
             try{
-                write_object("data_files/schedule_data",employee_schedule);
+                write_object("data_files/schedule_data.bin",employee_schedule);
             }
-            catch (Exception e) {
-                show_information_alert("Exception in add_staff_button_on_action in add_new_staff_controller");
+            catch (Exception ignored) {
+
             }
-            get_resources_add_staff_controller(employee);
+            close_window(actionEvent);
         }
     }
 
