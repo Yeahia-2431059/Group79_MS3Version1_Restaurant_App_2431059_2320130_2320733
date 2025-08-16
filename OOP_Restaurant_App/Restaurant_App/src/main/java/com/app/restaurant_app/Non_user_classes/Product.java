@@ -9,23 +9,19 @@ import static com.app.restaurant_app.Utility.show_information_alert;
 
 public class Product implements Serializable {
     private final String product_name;
-    private ArrayList<String> ingredients;
+    private final ArrayList<String> ingredients;
     private int price;
-    private int sales;
+    private static int sales;
 
     public Product(String product_name, ArrayList<String> ingredients, int price) {
         this.product_name = product_name;
         this.ingredients = new ArrayList<String>(ingredients);
         this.price = price;
-        this.sales = 0;
+
     }
 
     public int getSales() {
         return sales;
-    }
-
-    public void setSales(int sales) {
-        this.sales = sales;
     }
 
     public String getProduct_name() {

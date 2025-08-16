@@ -29,5 +29,6 @@
       <Button layoutX="443.0" layoutY="338.0" mnemonicParsing="false" onAction="#remove_from_schedule_button_on_action" prefHeight="26.0" prefWidth="144.0" text="Remove from schedule" />
       <ComboBox fx:id="day_combo_box" layoutX="296.0" layoutY="225.0" prefWidth="150.0" />
       <ComboBox fx:id="shift_combo_box" layoutX="296.0" layoutY="251.0" prefWidth="150.0" />
+      <Button layoutX="497.0" layoutY="32.0" mnemonicParsing="false" onAction="#go_to_previous_scene_button_on_action" text="Go back" />
    </children>
 </AnchorPane>
