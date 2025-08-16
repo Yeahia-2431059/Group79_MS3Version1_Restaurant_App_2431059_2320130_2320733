@@ -9,13 +9,13 @@ import static com.app.restaurant_app.Utility.show_information_alert;
 
 public class Product implements Serializable {
     private final String product_name;
-    private ArrayList<String> Ingredients;
+    private ArrayList<String> ingredients;
     private int price;
     private int sales;
 
     public Product(String product_name, ArrayList<String> ingredients, int price) {
         this.product_name = product_name;
-        Ingredients = ingredients;
+        this.ingredients = new ArrayList<String>(ingredients);
         this.price = price;
         this.sales = 0;
     }
@@ -33,11 +33,11 @@ public class Product implements Serializable {
     }
 
     public ArrayList<String> getIngredients() {
-        return Ingredients;
+        return ingredients;
     }
 
     public void setIngredients(ArrayList<String> ingredients) {
-        Ingredients = ingredients;
+        ingredients = ingredients;
     }
 
     public int getPrice() {
