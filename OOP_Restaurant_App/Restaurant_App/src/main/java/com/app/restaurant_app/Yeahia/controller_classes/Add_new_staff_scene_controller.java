@@ -62,7 +62,7 @@ public class Add_new_staff_scene_controller {
         if (employee != null){
             Schedule employee_schedule = new Schedule(Integer.parseInt(new_staff_id_textfield.getText()),schedule);
             try{
-                write_object("data_files/schedule_data.bin",employee_schedule);
+                write_object("data_files/schedules_data.bin",employee_schedule);
             }
             catch (Exception ignored) {
 

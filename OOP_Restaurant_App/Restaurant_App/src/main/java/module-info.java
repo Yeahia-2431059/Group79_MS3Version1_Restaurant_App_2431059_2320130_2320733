@@ -12,5 +12,6 @@ module com.app.restaurant_app {
     exports com.app.restaurant_app.Yeahia.model_classes;
     opens com.app.restaurant_app.Yeahia.controller_classes.Dummy_classes;
     exports com.app.restaurant_app.Yeahia.controller_classes.Dummy_classes to javafx.fxml;
-
+    opens com.app.restaurant_app.Non_user_classes;
+    exports com.app.restaurant_app.Non_user_classes to javafx.fxml;
 }

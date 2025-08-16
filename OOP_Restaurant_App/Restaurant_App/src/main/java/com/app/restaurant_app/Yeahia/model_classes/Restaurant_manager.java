@@ -15,9 +15,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Restaurant_manager extends Employee implements Serializable {
-
-    private String name;
-    private long mobile_number;
     private static byte same_type_staff_count = 0;
 
     public Restaurant_manager(int staff_id, String staff_type) {
@@ -85,7 +82,7 @@ public class Restaurant_manager extends Employee implements Serializable {
         }
     }
     public static Boolean add_staff_schedule_validation(ArrayList<Select_days_for_add_staff_dummy> assigned_schedule){
-        if (assigned_schedule.size() == 4){
+        if (assigned_schedule.size() <= 4 && assigned_schedule.size() >= 2){
             ArrayList<String> days_array = new ArrayList<String>();
             for (Select_days_for_add_staff_dummy schedule: assigned_schedule){
                 if (days_array.contains(schedule.getDay())){
@@ -99,25 +96,9 @@ public class Restaurant_manager extends Employee implements Serializable {
             return true;
         }
         else {
-            show_information_alert("Schedule consists of 4 shifts (28 hours per week)");
+            show_information_alert("Schedule has to consist of 2-4 shifts (14 to 28 hours per week)");
             return false;
         }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getMobile_number() {
-        return mobile_number;
-    }
-
-    public void setMobile_number(long mobile_number) {
-        this.mobile_number = mobile_number;
     }
 
     public static short getSame_type_staff_count() {
