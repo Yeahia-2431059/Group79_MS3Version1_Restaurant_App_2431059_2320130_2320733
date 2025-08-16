@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.app.restaurant_app.Ashik.Accountant"
+            prefHeight="400.0" prefWidth="600.0" >
+    <BorderPane>
+        <top>
+            <Label text="Accountant Dashboard"
+                   style="-fx-font-size: 20; -fx-padding: 10;" BorderPane.alignment="CENTER"/>
+        </top>
+
+        <center>
+            <VBox spacing="10" alignment="CENTER">
+                <children>
+                    <Button text="Verify Daily Sales" onAction="#verifyDailySales" maxWidth="Infinity"/>
+                    <Button text="Manage Staff Salaries" onAction="#manageSalaries" maxWidth="Infinity"/>
+                    <Button text="Generate Monthly Reports" onAction="#generateReports" maxWidth="Infinity"/>
+                    <Button text="Track Discounts / Refunds" onAction="#trackDiscounts" maxWidth="Infinity"/>
+                    <Button text="Analyze Inventory Costs" onAction="#analyzeInventory" maxWidth="Infinity"/>
+                    <Button text="Audit Tax Entries" onAction="#auditTaxes" maxWidth="Infinity"/>
+                    <Button text="Forecast Budget" onAction="#forecastBudget" maxWidth="Infinity"/>
+                    <Button text="Integrate Department Data" onAction="#integrateData" maxWidth="Infinity"/>
+                </children>
+                <padding>
+                    <Insets topRightBottomLeft="16"/>
+                </padding>
+            </VBox>
+        </center>
+    </BorderPane>
+
+
+</AnchorPane>
