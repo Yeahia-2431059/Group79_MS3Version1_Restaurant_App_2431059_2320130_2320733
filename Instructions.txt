@@ -10,5 +10,5 @@ About --
 Instructions -- 
   - Restaurant manager will be registered
   - Id/gmail = 100000
-  - Pass = 100000
+  - Pass = 1000000
   - from there other users can be created and whatnot
