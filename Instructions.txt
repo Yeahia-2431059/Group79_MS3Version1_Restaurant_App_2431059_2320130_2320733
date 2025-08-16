@@ -1,1 +1,11 @@
+About -- 
+	- During submission the zip downloaded from github couldnt extract so my fellow members contribution were not submitted
+	- and it was already too late as nor could i complete the excel sheet given
+	- all the files including excel will be uploaded on github.
+  - same with the data_file folder in project, it will be reset with only restaurant manager with only user
 
+Instructions -- 
+  - Restaurant manager will be registered
+  - Id/gmail = 100000
+  - Pass = 100000
+  - from there other users can be created and whatnot
