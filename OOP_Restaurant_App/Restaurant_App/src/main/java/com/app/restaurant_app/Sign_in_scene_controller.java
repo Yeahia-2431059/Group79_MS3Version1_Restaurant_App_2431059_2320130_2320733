@@ -160,4 +160,12 @@ public class Sign_in_scene_controller {
         name_textfield.clear();
     }
 
+    public void login_button_on_action(ActionEvent actionEvent) {
+        try{
+        scene_changer(actionEvent,"Log_in_scene.fxml");
+        }
+        catch (Exception e){
+            show_information_alert("smth happened");
+        }
+    }
 }

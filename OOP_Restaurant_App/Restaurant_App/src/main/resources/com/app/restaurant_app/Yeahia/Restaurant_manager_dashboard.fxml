@@ -30,4 +30,5 @@
    <Button layoutX="40.0" layoutY="89.0" mnemonicParsing="false" onAction="#see_profile_button_on_action" text="See profile" />
    <Button layoutX="35.0" layoutY="240.0" mnemonicParsing="false" onAction="#see_product_button_on_action" prefHeight="26.0" prefWidth="150.0" text="See Products" />
    <Label fx:id="filtered_staff_count_label" layoutX="504.0" layoutY="309.0" prefHeight="18.0" prefWidth="82.0" />
+   <Button layoutX="504.0" layoutY="77.0" mnemonicParsing="false" onAction="#log_out_button_on_action" prefHeight="26.0" prefWidth="82.0" text="Log out" />
 </AnchorPane>

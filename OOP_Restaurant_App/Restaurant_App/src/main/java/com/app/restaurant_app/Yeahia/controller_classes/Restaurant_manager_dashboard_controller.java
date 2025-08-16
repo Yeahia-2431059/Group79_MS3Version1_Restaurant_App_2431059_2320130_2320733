@@ -53,8 +53,8 @@ public class Restaurant_manager_dashboard_controller {
                 staff_tableview.getItems().add((Employee) employee);
             }
         }
-        catch (Exception e){
-            show_information_alert("Exception in initialize method in restaurant_manager_dashboard_controller");
+        catch (Exception ignored){
+
         }
         filtered_staff_count_label.setText(String.valueOf(staff_tableview.getItems().size()));
     }
@@ -68,7 +68,13 @@ public class Restaurant_manager_dashboard_controller {
 
     @javafx.fxml.FXML
     public void Manage_staff_button_on_action(ActionEvent actionEvent) {
+        try {
+            Manage_staff_scene_controller controller = scene_changer_returns_controller(actionEvent, "Yeahia/Manage_staff_scene.fxml");
+            controller.get_resources(staff_tableview.getSelectionModel().getSelectedItem());
+        }
+        catch (Exception ignored){
 
+        }
     }
 
     @javafx.fxml.FXML
@@ -94,12 +100,21 @@ public class Restaurant_manager_dashboard_controller {
         try{
             ArrayList<Object> object_arraylist =  read_object("data_files/employee_data.bin");
             Employee employee;
-            for (Object object : object_arraylist){
-                employee = (Employee)object;
-                if (employee.getEmployee_type().equals(staff_type)){
+            if (staff_type.equals("All")){
+                for (Object object : object_arraylist){
+                    employee = (Employee)object;
                     staff_tableview.getItems().add(employee);
                 }
             }
+            else{
+                for (Object object : object_arraylist){
+                    employee = (Employee)object;
+                    if (employee.getEmployee_type().equals(staff_type)){
+                        staff_tableview.getItems().add(employee);
+                    }
+                }
+            }
+
             filtered_staff_count_label.setText(String.valueOf(staff_tableview.getItems().size()));
         } catch (Exception ignored) {
 
@@ -108,6 +123,20 @@ public class Restaurant_manager_dashboard_controller {
 
     @javafx.fxml.FXML
     public void see_product_button_on_action(ActionEvent actionEvent) {
+        try{
+            scene_changer(actionEvent,"Yeahia/see_product_scene.fxml");
+        } catch (Exception ignored) {
 
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void log_out_button_on_action(ActionEvent actionEvent) {
+        try{
+            scene_changer(actionEvent,"Log_in_scene.fxml");
+        }
+        catch (Exception e){
+            show_information_alert("smth happened");
+        }
     }
 }
