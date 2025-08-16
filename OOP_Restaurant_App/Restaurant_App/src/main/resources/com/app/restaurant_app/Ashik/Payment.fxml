@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.app.restaurant_app.Ashik.Payment"
+            prefHeight="400.0" prefWidth="600.0">
+    <Label text="Payment"/>
+    <ChoiceBox fx:id="paymentMethod" promptText="Select Payment Method"/>
+    <TextField fx:id="cardOrMobile" promptText="Enter Card/Mobile Info"/>
+
+    <HBox spacing="10">
+        <Button text="Pay Now" onAction="#processPayment"/>
+        <Button text="Cancel" onAction="#cancelPayment"/>
+    </HBox>
+
+    <Label fx:id="paymentStatus"/>
+
+</AnchorPane>

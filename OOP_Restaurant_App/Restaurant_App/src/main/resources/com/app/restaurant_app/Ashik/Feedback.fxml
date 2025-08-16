@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.app.restaurant_app.Ashik.Feedback"
+            prefHeight="400.0" prefWidth="600.0">
+    <Label text="Provide Feedback"/>
+    <ChoiceBox fx:id="orderChoice" promptText="Select Order"/>
+    <Label text="Rate Service:"/>
+    <Slider fx:id="ratingSlider" min="1" max="5" value="3" majorTickUnit="1" snapToTicks="true" showTickLabels="true" showTickMarks="true"/>
+    <TextArea fx:id="commentArea" promptText="Write your feedback (optional)" prefRowCount="4"/>
+    <Button text="Submit Feedback" onAction="#submitFeedback"/>
+    <Label fx:id="feedbackStatus"/>
+
+</AnchorPane>
+
