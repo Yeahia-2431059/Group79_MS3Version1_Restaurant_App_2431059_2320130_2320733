@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.app.restaurant_app.Ashik.TaxAudit"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox>
+
+        <Label text="Tax Audit"/>
+        <Button text="Fetch Transactions" onAction="#fetchData"/>
+        <TableView fx:id="taxTable">
+            <columns>
+                <TableColumn text="Transaction ID"/>
+                <TableColumn text="Tax Rate"/>
+                <TableColumn text="Tax Amount"/>
+            </columns>
+        </TableView>
+
+        <Button text="Prepare Tax Report" onAction="#prepareReport"/>
+        <Button text="Export Records" onAction="#exportRecords"/>
+    </VBox>
+
+</AnchorPane>

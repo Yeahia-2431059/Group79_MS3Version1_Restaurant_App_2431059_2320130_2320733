@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.app.restaurant_app.Ashik.StaffSalary"
+            prefHeight="400.0" prefWidth="600.0">
+    <BorderPane>
+
+        <top>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Load Attendance Data" onAction="#loadAttendance"/>
+                <Button text="Calculate Salaries" onAction="#calculateSalary"/>
+            </HBox>
+        </top>
+
+        <center>
+            <TableView fx:id="salaryTable">
+                <columns>
+                    <TableColumn text="Staff ID"/>
+                    <TableColumn text="Name"/>
+                    <TableColumn text="Hours"/>
+                    <TableColumn text="Salary"/>
+                </columns>
+            </TableView>
+        </center>
+
+        <bottom>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button text="Export Payroll" onAction="#exportPayroll"/>
+                <Button text="Notify Staff" onAction="#notifyStaff"/>
+            </HBox>
+        </bottom>
+    </BorderPane>
+
+</AnchorPane>
