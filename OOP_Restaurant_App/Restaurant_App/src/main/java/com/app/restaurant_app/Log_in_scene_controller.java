@@ -30,55 +30,55 @@ public class Log_in_scene_controller {
 
     @javafx.fxml.FXML
     public void Login_button_on_action(ActionEvent actionEvent) throws IOException{
+        if (password_textfield.getText().length() > 6){
+            String unique_identifier = gmail_textfield.getText();
+            if (is_integer(unique_identifier)){
 
-        String unique_identifier = gmail_textfield.getText();
-        if (is_integer(unique_identifier)){
+                int employee_id = Integer.parseInt(unique_identifier);
+                Employee employee = Employee.verify_login_and_return_employee(employee_id,password_textfield.getText());
 
-            int employee_id = Integer.parseInt(unique_identifier);
-            Employee employee = Employee.verify_login_and_return_employee(employee_id,password_textfield.getText());
+                if (employee == null) {
+                    // do nothing
+                }
+                else if (employee instanceof Waiter_staff waiter_staff) {
 
-            if (employee == null) {
-                // do nothing
-            }
-            else if (employee instanceof Waiter_staff waiter_staff) {
+                    Waiter_dashboard_controller controller =  scene_changer_returns_controller(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
+                    controller.get_resources(waiter_staff);
+                }
+                else if (employee instanceof Restaurant_manager restaurant_manager) {
+                    Restaurant_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
+                    controller.get_resources(restaurant_manager);
+                }
+                else if (employee instanceof Marketing_manager marketing_manager){
+                    Marketing_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Soyaiminul/marketing_manager_dashboard.fxml");
+                    controller.get_resources(marketing_manager);
+                }
+                else if (employee instanceof Delivery_driver delivery_driver) {
+                    Delivery_driver_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Soyaiminul/delivery_driver_dashboard.fxml");
+                    controller.get_resources(delivery_driver);
+                }
+                else if (employee instanceof Inventory_manager inventory_manager) {
+                    Inventory_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Sakib/Inventory_manager_dashboard.fxml");
+                    controller.get_resources(inventory_manager);
+                }
+                else if (employee instanceof Kitchen_staff kitchen_staff){
+                    Kitchen_staff_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Sakib/kitchen_staff_dashboard.fxml");
+                    controller.get_resources(kitchen_staff);
+                }
+                else {
 
-                Waiter_dashboard_controller controller =  scene_changer_returns_controller(actionEvent, "Yeahia/Waiter_staff_dashboard_scene.fxml");
-                controller.get_resources(waiter_staff);
+                }
             }
-            else if (employee instanceof Restaurant_manager restaurant_manager) {
-                Restaurant_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent, "Yeahia/Restaurant_manager_dashboard.fxml");
-                controller.get_resources(restaurant_manager);
+            else if (gmail_textfield.getText().endsWith("@gmail.com")){
+                show_information_alert("you would be taken to customer scene(if verified and what not) \n but guess what!");
+                show_information_alert("it doesn't exist!!");
             }
-            else if (employee instanceof Marketing_manager marketing_manager){
-                Marketing_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Soyaiminul/marketing_manager_dashboard.fxml");
-                controller.get_resources(marketing_manager);
-            }
-            else if (employee instanceof Delivery_driver delivery_driver) {
-                Delivery_driver_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Soyaiminul/delivery_driver_dashboard.fxml");
-                controller.get_resources(delivery_driver);
-            }
-            else if (employee instanceof Inventory_manager inventory_manager) {
-                Inventory_manager_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Sakib/Inventory_manager_dashboard.fxml");
-                controller.get_resources(inventory_manager);
-            }
-            else if (employee instanceof Kitchen_staff kitchen_staff){
-                Kitchen_staff_dashboard_controller controller = scene_changer_returns_controller(actionEvent,"Sakib/kitchen_staff_dashboard.fxml");
-                controller.get_resources(kitchen_staff);
-            }
-            else {
-
+            else{
+                show_information_alert("Invalid! either 6 digit number or @gmail.com at the end");
             }
         }
         else {
-
-//            ArrayList<Object> customer_arraylist = new ArrayList<>(Utility.read_object("data_files/customer_data.bin"));
-//
-//            for (Object customer : customer_arraylist) {
-//                if (unique_identifier.equals(((Customer)customer).getGmail())){
-//                   scene_changer(actionEvent,"Ashik/Customer_dashboard");
-//                    Customer_dashboard_controller.get_resources(((Customer)customer));
-//                }
-            return;
+            show_information_alert("wrong pass");
         }
         gmail_textfield.clear();
         password_textfield.clear();
