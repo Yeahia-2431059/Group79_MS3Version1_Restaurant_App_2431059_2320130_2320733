@@ -3,7 +3,7 @@ About --
 	- and it was already too late as nor could i complete the excel sheet given
 	- all the files including excel will be uploaded on github.
   	- same with the data_file folder in project, it will be reset with only restaurant manager with only user
-	- version history is there, (to show no foul play)
+	- version history is there(hopefully), (to show no foul play)
 
 	- unless there is marks in the data file informative excel sheet then, i couldnt submit with anything, but i will be uploading that here with the information that it was supposed to have, and bin files will be created in runtime, in data_files folder when needed.
 
