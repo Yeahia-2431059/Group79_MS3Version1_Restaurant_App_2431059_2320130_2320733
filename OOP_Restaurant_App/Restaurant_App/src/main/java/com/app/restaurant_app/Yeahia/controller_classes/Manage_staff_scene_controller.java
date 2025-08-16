@@ -45,6 +45,7 @@ public class Manage_staff_scene_controller {
 
         day_table_column.setCellValueFactory(new PropertyValueFactory<Select_days_for_add_staff_dummy,String>("day"));
         shift_table_column.setCellValueFactory(new PropertyValueFactory<Select_days_for_add_staff_dummy,String>("shift"));
+
     }
     @javafx.fxml.FXML
     public void fire_employee_button_on_action(ActionEvent actionEvent) {
@@ -129,6 +130,20 @@ public class Manage_staff_scene_controller {
         staff_designation_label.setText(employee.getEmployee_type());
         staff_mobile_number_label.setText(String.valueOf(employee.getMobile_number()));
         staff_name_label.setText(employee.getName());
+
+        try{
+            ArrayList<Object> object_arraylist = read_object("data_files/schedules_data.bin");
+            for (Object object: object_arraylist){
+                if (((Schedule)object).getEmployee_id() == employee.getEmployee_id()){
+                    for (Select_days_for_add_staff_dummy schedule: ((Schedule)object).getAssigned_schedule_arraylist()){
+                        staff_schedule_tableview.getItems().add(schedule);
+                    }
+                }
+            }
+        }
+        catch (Exception e) {
+
+        }
     }
 
     @javafx.fxml.FXML

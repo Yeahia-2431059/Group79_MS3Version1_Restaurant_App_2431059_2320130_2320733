@@ -33,5 +33,6 @@
       <TextField fx:id="new_ingredient_name_textfield" layoutX="456.0" layoutY="263.0" />
       <Button layoutX="277.0" layoutY="342.0" mnemonicParsing="false" onAction="#add_new_product_button_on_action" prefHeight="26.0" prefWidth="94.0" text="Add product" />
       <Button layoutX="277.0" layoutY="282.0" mnemonicParsing="false" onAction="#reset_new_product_ingredients_button_on_action" prefHeight="26.0" prefWidth="58.0" text="Reset" />
+      <Button layoutX="498.0" layoutY="343.0" mnemonicParsing="false" onAction="#go_to_previous_scene_on_action" prefHeight="26.0" prefWidth="81.0" text="Go back" />
    </children>
 </AnchorPane>
